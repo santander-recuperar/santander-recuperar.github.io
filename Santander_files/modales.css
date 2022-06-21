@@ -1,0 +1,146 @@
+
+@media (max-width: @screen-xs-max) {
+  .modal {
+        width: 100%;
+    min-width: 200px;
+    max-width: 260px;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max)  { 
+  .modal {
+        width: 100%;
+    min-width: 200px;
+    max-width: 260px;
+  }
+  .boton_rojo {
+     width: 100%;
+     background: #FF0000; 
+     color: #FFFFFF;
+     height: 40px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+  .modal {
+        width: 100%;
+    min-width: 200px;
+    max-width: 260px;
+    margin-left: -160px;
+  }
+  
+  
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+  form  {
+    padding-left: 10px;
+  }
+  .modal {
+        width: 100%;
+    min-width: 200px;
+    max-width: 260px;
+    margin-left: -160px;
+  }
+  #Ventana_1 {
+            width: 100%;
+    min-width: 200px;
+    max-width: 260px;
+    margin-left: -160px;
+  }
+}
+
+  .modal {
+        width: 100%;
+    min-width: 200px;
+    max-width: 320px;
+    margin-left: -160px;
+    max-height: 100%;
+    overflow-y: auto
+  }
+  .ancho_total {
+    width: 100%;
+
+  }
+
+
+  form select {
+    width: 100%;
+
+  }
+
+  form  input{
+    width: 96%;
+
+  }
+
+  .boton_rojo {
+     width: 100%;
+     background: #FF0000; 
+     color: #FFFFFF;
+     height: 40px;
+  }
+
+  #cerrar {
+    text-align: right;
+  }
+
+  .cabecera_modal {
+    border-bottom: 0px;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+  }
+  .enlace_volver{
+    font-size: 10px;
+    color: gray;
+    text-align: right;
+    text-decoration: underline;
+  }
+
+  .modal-body-plus {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: auto;
+  }
+
+  .texto_gris {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .container-fluid {
+	padding-right: 0px !important;
+  }
+  
+  #imgLoading {
+  	width: 15%;
+  }
+  
+  .loadingDiv{
+  	text-align: center;
+  	display: none;
+  }
+  
+  .alert {
+  	padding: 8px 14px 8px 14px !important;
+  	text-align: justify;
+  }
+  
+  .error-text{
+  	color: #FF0000;
+  }
+  
+  .success-text{
+  	color: #00FF00;
+  }
+  
+  .modal-footer{
+  	margin-bottom: 10%;
+  }
+ .hidden-modal{
+ 	display:none !important;
+ }
